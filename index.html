@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f5f9;
+  }
+  #container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  #yesButton {
+    background-color: #43a047;
+    color: #ffffff;
+  }
+  #noButton {
+    background-color: #e53935;
+    color: #ffffff;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.3s;
+  }
+</style>
+<title>Botones Interactivos</title>
+</head>
+<body>
+  <div id="container">
+    <p>Vas a ir a jugar ahora?</p>
+    <button id="yesButton">Sí</button>
+    <button id="noButton">No</button>
+  </div>
+  <script>
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    
+    yesButton.addEventListener('click', () => {
+      alert('¡Genial, perfecto!, Aca esta la direccion https://goo.gl/maps/26GnQvNi8CkKS1Kx9');
+    });
+    
+    document.addEventListener('mousemove', (event) => {
+      const distance = Math.sqrt(
+        Math.pow(event.clientX - noButton.getBoundingClientRect().left - noButton.offsetWidth / 2, 2) +
+        Math.pow(event.clientY - noButton.getBoundingClientRect().top - noButton.offsetHeight / 2, 2)
+      );
+      if (distance < 100) {
+        const newX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+        const newY = Math.random() * (window.innerHeight - noButton.offsetHeight);
+        noButton.style.left = newX + 'px';
+        noButton.style.top = newY + 'px';
+      }
+    });
+  </script>
+</body>
+</html>
